@@ -1,0 +1,41 @@
+<div class="edit-form-container" style="background-image: url('<%= asset_path('memo-background2.png') %>'); ">
+
+<body >
+<%= form_with(model: @blog, local: true) do |form| %>
+
+    <h1 class='sub-header'>予定を編集</h1>
+
+    <div class="title">
+        <%= form.text_field :title, placeholder: "タイトル", class: 'custom-title' %>
+    </div>
+    <br>
+    <div class="content">
+        <%= form.text_area :content, placeholder: "メモ", class: 'custom-content' %>
+    </div>
+    <br>
+    <div class="time">
+        <%= form.label :開始時間 %>
+        <%= form.datetime_select :start_time %>
+    </div>
+    <div class="ftime">
+        <%= form.label :終了時間 %>
+        <%= form.datetime_select :finish_time %>
+    </div>
+    <br>
+    <div class="category">
+        <%= form.select :category, [["予定","show"],["タスク","task"]], include_blank: "どの投稿？",  class: "category-select" %>
+    </div>
+    <br>
+    <div class="deadline">
+        <%= form.label :締め切り %>
+        <%= form.datetime_select :deadline %>
+    </div>
+    <br>
+    <div class="submit">
+        <%= form.submit "変更" %>
+    </div>
+
+<% end %>
+</body>
+
+</div>

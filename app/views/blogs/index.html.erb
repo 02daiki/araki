@@ -1,0 +1,131 @@
+<p id="notice"><%= notice %></p>
+
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        /* 他のスタイルもここに追加 */
+    </style>
+</head>
+
+
+<h1 class='custom-header'>
+<div style="display: flex; align-items: left; justify-content: space-between; margin-right: 20px;">
+My Schedule
+<%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
+</div>
+</h1>
+
+<div class="flex-container">
+    <% filtered_blogs = @blogs.select { |blog| blog.category == "task" || blog.deadline.present?} %>
+        <% if filtered_blogs.any? { |blog| ( blog.start_time >= Date.today && blog.start_time <= 3.days.from_now ) || ( blog.deadline.present? && blog.deadline >= Date.today && blog.deadline <= 3.days.from_now ) } %>
+        <div class="box3days">〆切間近</div>
+
+        <% elsif filtered_blogs.any? { |blog| ( blog.start_time >= Date.today && blog.start_time <= 1.week.from_now ) || ( blog.deadline.present? && blog.deadline >= Date.today && blog.deadline <= 1.week.from_now ) } %>
+        <div class="box1week">〆切近い</div>
+
+        <% else %>
+        <div class="boxnotask">タスクなし</div>
+    <% end %>
+    <button id="toggle-button" class="toggle-button"> ∧</button>
+</div>
+
+    <div id="blog-list">
+
+
+<table >
+
+    <tbody>
+    <% filtered_blogs.each do |blog| %>
+    <div class="blog-post" style="background-image: url('<%= asset_path('post-background.png') %>');" >
+        <div>
+            <div class='blog-title'><%= blog.title %></div>
+        </div>
+    <div style="display: flex; align-items: left; justify-content: space-between;">
+    <div>
+        <div class='date-font'>
+            <div class='date'><%= blog.start_time.strftime("%Y") + "年" + blog.start_time.strftime("%m") + "月" + blog.start_time.strftime("%d") + "日" %></div>
+        </div>
+        <div class='time-font'>
+        <div class='time'><%= "　" + blog.start_time.strftime("%H:%M") + "　＞＞　" + blog.finish_time.strftime("%H:%M")%></div>
+        </div>
+        <div>
+            <div class='date-time'>締め切り：　<%= blog.deadline.present? ? blog.deadline.strftime("%Y") + "年" + blog.deadline.strftime("%m") + "月" + blog.deadline.strftime("%d") + "日　" + blog.deadline.strftime("%H:%M") : "未設定" %></div>
+        </div>
+        <div>
+            <div style="display: flex; align-items: center;">
+            <% if blog.category == "show" %>
+            <%= link_to '閲覧', blog_path(blog.id) %>
+            <% else %>
+            <%= button_to '管理する', edit_blog_path(blog.id), method: :get, class: "inline-button" %>
+            <% end %>
+            <%= button_to '削除',blog_path(blog.id), method: :delete, class: "inline-button" %>
+            </div>
+        </div>
+    </div>
+
+            <div>
+            <label for="content_<%= blog.id %>"></label>
+            <textarea class='memo-textarea' id="content_<%= blog.id %>" name="blog[content]" rows="4" cols="50">
+            <%= blog.content %>
+            </textarea>
+            </div>
+
+        </div>
+        </div>
+    </div>
+    <% end %>
+    </tbody>
+
+
+</table>
+</div>
+
+<br>
+
+<%= link_to '予定を追加', new_blog_path %>
+
+<%= month_calendar events: @blogs do |date, blogs| %>
+    <div class="date-box <%= 'today' if date == Date.today %> <%= 'single-digit' if date.day < 10 %> 
+    <%= 'double-digit' if date.day >= 10 %> <%= 'red-sunday' if date.wday == 0 %> <%= 'blue-saturday' if date.wday == 6 %>">
+    <span class="date-day"><%= date.day %></span>
+    </div>
+    <% blogs.each do |blog| %>
+    <div class="box <%= 'overlapping' if @overlapping_blogs.include?(blog) %> <%= 'task-box' if blog.category == 'task' %> ">
+    <span class="box-text">
+        <% if blog.category == "show" %>
+        <%= link_to blog.title, blog, class: "box-link" %>
+        <% else %>
+        <%= link_to blog.title, edit_blog_path(blog.id), class: "box-link" %>
+        <% end %>
+    </span>
+    </div>
+    <% end %>
+<% end %>
+
+
+<script>
+    let isVisible = true; // 初期状態を設定
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const button = document.getElementById("toggle-button");
+        const blogList = document.getElementById("blog-list"); // div全体を取得
+
+        button.addEventListener("click", function() {
+            if (isVisible) {
+                blogList.style.display = "none"; // tbodyを非表示
+                button.textContent = " ∨ タスクを表示"; // ボタンのテキストを変更
+            } else {
+                blogList.style.display = ""; // tbodyを表示（デフォルトに戻す）
+                button.textContent = " ∧"; // ボタンのテキストを変更
+            }
+            isVisible = !isVisible; // 状態を反転
+        });
+    });
+</script>

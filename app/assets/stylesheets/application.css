@@ -1,0 +1,533 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require simple_calendar
+ *= require_tree .
+ *= require_self
+ */
+
+
+body {
+    font-family: 'Noto Sans JP', sans-serif; /* フォントを設定 */
+}
+
+.custom-header {
+    background-color: #ebebeb;
+    color: #2c3e50;
+    font-size: 4em;
+    font-family: 'Patrick Hand', cursive !important;
+    font-family: 'M PLUS 1p', sans-serif; 
+    margin-bottom: 20px; /* 下の余白を追加 */
+    margin-top: 0;
+    margin-left: 0;
+    padding-left: 10px;
+}
+.sub-header {
+    text-decoration: underline;
+    text-decoration-thickness: 4px;
+    text-decoration-color: #a9a9a9;
+    text-underline-offset: 5.5px;
+    color: #2c3e50;
+    font-size: 2em;
+    font-family: 'Noto Sans JP', sans-serif;
+    padding-left: 10px;
+}
+/* .custom-titleに対してだけスタイルを適用 */
+.custom-title {
+    width: 100% !important; /* 親要素の幅に合わせて横幅を広げる */
+    max-width: 500px !important; /* 最大幅を指定して制限 */
+    height: 40px !important;
+    font-size: 20px;
+    border: 2px solid #a9a9a9;
+    border-radius: 5px;
+}
+
+.custom-content {
+    width: 100% !important; /* 親要素の幅に合わせて横幅を広げる */
+    max-width: 500px !important; /* 最大幅を指定して制限 */
+    height: 200px !important;
+    font-size: 20px;
+    border: 2px solid #a9a9a9;
+    border-radius: 5px;
+}
+
+/* .custom-datetimeに対してだけスタイルを適用 */
+.custom-datetime {
+    width: 100% !important;
+    max-width: 400px !important;
+    height: 100% !important;
+    max-height: 100px !important;
+}
+
+.category select {
+    width: 200px !important;
+    height: 33px !important;
+    font-size: 20px !important;
+}
+
+/* 送信ボタンのスタイル */
+.submit input[type="submit"] {
+    width: 100%;            /* 親要素の幅に合わせてボタンを広げる */
+    max-width: 400px;       /* 最大幅を設定 */
+    height: 40px;           /* 高さを40pxに設定 */
+    font-size: 20px;        /* フォントサイズを16pxに設定 */
+    padding: 5px;          /* 内側の余白を設定 */
+    border: 2px solid #ccc; /* 枠線を追加 */
+    border-radius: 5px;     /* 角を丸くする */
+    background-color: #a9a9a9; /* 背景色 */
+    color: black;           /* 文字色を白にする */
+    cursor: pointer;       /* ホバー時にポインタを表示 */
+}
+
+/* ボタンをホバーしたときのスタイル */
+.submit input[type="submit"]:hover {
+    background-color: #808080; /* 背景色を変更 */
+}
+
+.weekend {background-color: #808080; /* 土日の背景色 */}
+
+.box3days{
+    width: 80px;
+    height: 30px;
+    background: #ff8c00;
+    border-radius:10%;
+    margin-right: 10px;
+    padding-left: 20px;
+    padding-top: 6px;
+    color: gray;
+
+    animation: flash 2s ease infinite;}
+    @keyframes flash {
+        0%,100% {opacity: 1;}
+        50% {opacity: 0;
+        }
+    }
+.box1week{
+    width: 80px;
+    height: 30px;
+    background: #ffd700;
+    border-radius:10%;
+    margin-right: 10px;
+    padding-left: 20px;
+    padding-top: 6px;
+    color: gray;
+
+    animation: flash 2s ease infinite;}
+    @keyframes flash {
+    0%,100% {opacity: 1;}
+    50% {opacity: 0;
+    }
+}
+.boxnotask{
+    width: 90px;
+    height: 30px;
+    background: whitesmoke;
+    border-radius:10%;
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-top: 6px;
+    color: gray;
+    }
+
+
+.toggle-button {
+    margin-left: 1px;
+    border: none; /* 外枠をなくす */
+    background: transparent; /* 背景を透明に */
+    color: #a9a9a9; /* テキストの色を設定 */
+    font-size: 24px; /* フォントサイズを調整 */
+    cursor: pointer; /* カーソルをポインターに */
+    padding: 0; /* パディングをなくす */
+    outline: none; /* フォーカス時のアウトラインをなくす */
+}
+
+/* ボタンを横並びにする */
+.inline-button {
+    display: inline-block;
+    margin-right: 10px;  /* ボタン間にスペースを追加 */
+}
+
+.toggle-button:hover {
+    color: #a9a9a9; /* ホバー時の色を変更 */
+}
+
+.flex-container {
+    display: flex; /* フレックスボックスを有効にする */
+    align-items: center; /* 縦方向の中央揃え */
+}
+
+.blog-title {
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-decoration-color: #a9a9a9;
+    text-underline-offset: 3px;
+}
+.date-time {
+    font-size: 25px;
+}
+
+.day-red {
+    background-color: #ffcdd9;
+}
+.day-blue {
+    background-color: #cdddff;
+}
+.day-green {
+    background-color: #cdffd0;
+}
+.day-orange {
+    background-color: #ffe1cd;
+}
+
+/* 日曜日のフォントカラーを赤に変更 */
+.red-sunday {
+    color: red !important;
+}
+/* 土曜日のフォントカラーを青に変更 */
+.blue-saturday {
+    color: blue !important;
+}
+
+.box {
+    padding: 3px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #afeeee;
+}
+
+.box-link {
+    display: block;
+    text-decoration: none; /* テキストの下線を消す */
+    color: inherit; /* 親要素の色を継承 */
+}
+
+.red-box {
+    background-color: red;
+    color: white; /* テキストの色を白にするなど、視認性を高める */
+}
+
+.box.overlapping {
+    background-color: #ff6347; /* 重なりがあるボックスを赤くする */
+}
+.box.task-box {
+  background-color: orange; /* お好みの背景色を設定 */
+}
+.box.overlapping.task-box {
+  background-color: #ff6347; /* overlappingのスタイルが優先されるように */
+  /* 必要に応じてoverlappingスタイルを追加 */
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1; /* 完全に表示 */
+    }
+    50% {
+        opacity: 0; /* 半透明 */
+    }
+    100% {
+        opacity: 1; /* 完全に表示 */
+    }
+}
+
+
+
+/* トップページ・ホームページ */
+/* ホームページの画像設定 */
+.l-container {
+    margin-right: 500px; /* 右のマージンを自動に */
+    margin-left: 100px;
+    margin-top: 100px;
+    width: 800px;
+    height: 400px;
+    padding: 20px; /* 内側の余白を設定（必要に応じて） */
+    border: 7px solid #a9a9a9;
+    border-radius: 25px;
+    background-image: url('setumeigazou-1.png'); /* 画像のURLを指定 */
+    background-size: cover; /* 画像を要素のサイズに合わせる */
+    background-position: center; /* 画像を中央に配置 */
+}
+/* 説明テキストの枠 */
+.l-container-text {
+    margin-right: 500px; /* 右のマージンを自動に */
+    margin-left: 100px;
+    margin-top: 10px;
+    width: 800px;
+    height: 50px;
+    padding: 20px; /* 内側の余白を設定（必要に応じて） */
+    border: 0px solid #a9a9a9;
+    border-radius: 25px;
+    font-size: 20px;
+}
+.button-container {
+    margin-right: 500px;
+    margin-left: 450px;
+    margin-top: 10px; /* l-containerとの間にスペースを追加 */
+}
+.select-button {
+    margin: 10px; /* ボタン同士のスペースを確保 */
+    padding: 0px; /* ボタンの内側の余白を設定 */
+    border: none; /* ボタンの境界線を消す */
+    border-radius: 50%; /* ボタンを丸くする */
+    width: 15px;
+    height: 15px;
+    background-color: white; /* ボタンの背景色 */
+    color: white; /* ボタンのテキスト色 */
+    cursor: pointer; /* カーソルをポインターに変更 */
+    font-size: 16px; /* フォントサイズの設定 */
+    transition: background-color 0.3s; /* 背景色の変化にアニメーションを追加 */
+}
+.select-button:hover {
+    background-color: #a9a9a9; /* ホバー時の背景色 */
+}
+.selected {
+    background-color: #a9a9a9; /* 選択時の色 */
+}
+.p-fv {
+    width: 100%;
+    height: 800px;
+
+    /* 背景画像を表示 */
+    background-image: url(top.png);
+
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+
+.gray-background {
+    background-color: #ebebeb; /* このクラスが付いているbodyにだけ適用 */
+}
+
+.start-link {
+    position: absolute; /* 絶対位置に配置 */
+    bottom: 40px; /* 下に20pxの余白 */
+    right: 330px; /* 右に20pxの余白 */
+    color: #000000;
+    font-size: 38px;
+    text-decoration: none; /* リンクの下線を消す */
+    overflow: hidden;
+    display: inline-block;
+}
+.start-link::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 5px;
+    background-color: #ffa500;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+.start-link:hover::after {
+    transform: translateX(0);
+}
+
+.login-link {
+    position: absolute; /* 絶対位置に配置 */
+    bottom: 450px; /* 下に20pxの余白 */
+    right: 200px; /* 右に20pxの余白 */
+    color: #000000;
+    font-size: 38px;
+    text-decoration: none; /* リンクの下線を消す */
+    overflow: hidden;
+    display: inline-block;
+    z-index: 2;
+}
+.login-link::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 5px;
+    background-color: #ffa500;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+.login-link:hover::after {
+    transform: translateX(0);
+}
+
+.signup-link {
+    position: absolute; /* 絶対位置に配置 */
+    bottom: 350px; /* 下に20pxの余白 */
+    right: 200px; /* 右に20pxの余白 */
+    color: #000000;
+    font-size: 38px;
+    text-decoration: none; /* リンクの下線を消す */
+    overflow: hidden;
+    display: inline-block;
+    z-index: 1;
+}
+.signup-link::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 5px;
+    background-color: #ffa500;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+.signup-link:hover::after {
+    transform: translateX(0);
+}
+.image {
+    z-index: 3;
+}
+
+
+/* ログインページ・サインアップページ */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.login-text {
+    text-align: center;
+    font-family: 'Noto Sans', sans-serif;
+    border: 7px solid #ebebeb;
+    border-radius: 8px; /* 角を丸くする */
+    padding: 50px 20px;
+    background-color: transparent;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 50px auto;
+}
+.actions input[type="submit"] {
+    padding: 10px 80px; /* 上下左右の余白を設定 */
+    font-size: 16px; /* フォントサイズを設定 */
+    background-color: #ebebeb; /* ボタンの背景色 */
+    color: black; /* 文字色 */
+    border: none; /* 枠線をなしに */
+    border-radius: 5px; /* 角を丸くする */
+    cursor: pointer; /* マウスカーソルをポインターに */
+}
+.actions input[type="submit"]:hover {
+    background-color: #c0c0c0; /* ホバー時の背景色 */
+}
+.login-text h2 {
+    font-size: 30px;
+}
+.login-text p {
+    font-size: 16px;
+}
+.actions input[type="submit"] {
+    font-size: 20px; /* ボタンのフォントサイズ */
+}
+.field label {
+    font-size: 20px;
+}
+
+
+
+.today {
+    background-color: white !important;
+}
+.date-box {
+    padding-left: 8px !important; 
+}
+/* 今日の日付ボックスの左上に小さな丸を追加 */
+.date-box.today {
+    position: relative;
+}
+
+.date-box.today.single-digit::before {
+    content: ''; /* コンテンツを空にして、丸を表示する */
+    position: absolute;
+    top: 0.5px;
+    left: 1px;
+    width: 25px; /* 丸のサイズ */
+    height: 25px; /* 丸のサイズ */
+    border-radius: 50%; /* 丸にするため */
+    background-color: #a9a9a9; /* 丸の色 (例: 黄色) */
+    z-index: 0;
+}
+.date-box.today.double-digit::before {
+    content: ''; /* コンテンツを空にして、丸を表示する */
+    position: absolute;
+    top: 0.5px;
+    left: 5px;
+    width: 25px; /* 丸のサイズ */
+    height: 25px; /* 丸のサイズ */
+    border-radius: 50%; /* 丸にするため */
+    background-color: #a9a9a9; /* 丸の色 (例: 黄色) */
+    z-index: 0;
+}
+
+/* 日付ボックスの親要素 */
+.date-box {
+    position: relative; /* これで内部要素を絶対配置可能にする */
+}
+
+  /* 今日の日付に適用 */
+.date-box.today {
+    position: relative;
+}
+
+  /* 日付（<%= date.day %>）部分 */
+.date-day {
+    position: relative; /* 相対配置でz-indexを効かせる */
+    z-index: 1; /* 日付を前面に表示 */
+}
+
+.date-font {
+    padding: 0;
+    margin: 0;
+    font-size: 25px;
+}
+.time-font {
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 30px;
+}
+
+.separation {
+    border: 1px solid black; /* 枠線の色と太さを設定 */
+    padding: 10px; /* 内側の余白 */
+}
+
+.memo-textarea {
+    width: 500px; /* フォームの幅を100%に */
+    height: 120px;
+    padding: 5px;
+    padding-left: 5px !important;
+    margin-right: 350px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.edit-form-container {
+    height: 100%; /* ページ全体を使用 */
+    margin: 0;    /* デフォルトのマージンをリセット */
+    display: flex;
+    justify-content: center; /* 横方向の中央揃え */
+    align-items: center;     /* 縦方向の中央揃え */
+    background-size: cover;        /* 画像が枠全体にフィットするように設定 */
+    background-position: center;   /* 画像を中央に配置 */
+    background-repeat: no-repeat;  /* 画像の繰り返しを防止 */
+    padding: 90px;
+}
+
+.blog-post {
+    background-color: #f9f9f9;  /* 明るい背景色 */
+    margin: 10px 0;              /* 各投稿の上下に余白を追加 */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 100px;
+}

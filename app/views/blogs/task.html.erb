@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+    <strong>タイトル</strong>
+    <% if @blog.category == "task" %>
+    <%= @blog.title %>
+    <% end %>
+</p>
+
+<p>
+    <strong>時間</strong>
+    <% if @blog.category == "task" %>
+    <%= @blog.start_time.strftime("%Y-%m-%d %H:%M") %>
+    <% end %>
+</p>
+
+<p>
+    <strong>内容</strong>
+    <% if @blog.category == "task" %>
+    <%= @blog.content %>
+    <% end %>
+</p>
+
+<%= link_to 'Edit', edit_blog_path(@blog) %> |
+<%= link_to 'Back', blogs_path %>

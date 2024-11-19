@@ -1,0 +1,58 @@
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        /* 他のスタイルもここに追加 */
+    </style>
+</head>
+
+
+<body class="gray-background" >
+
+<div class="l-container" id="image-container" ></div>
+
+<div class="l-container-text" id="text-container" >通常の予定とは別に、未確定な予定を「タスク」として登録することができます。このとき、締め切りを設定することもできます。</div>
+
+<%= link_to "ログイン", blogs_path , class: "login-link" %>
+<%= link_to "新規登録", new_user_registration_path , class: "signup-link" %>
+
+<div class='button-container' >
+<button class='select-button selected'
+data-text="通常の予定とは別に、未確定な予定を「タスク」として登録することができます。このとき、締め切りを設定することもできます。" 
+onclick="changeBackgroundImage('setumeigazou-1.png', this)"></button>
+
+<button class='select-button'
+data-text="「タスク」として登録された予定はカレンダー上でオレンジ色で表示されます。また、予定にブッキングが生じた場合は赤色で表示されます。" 
+onclick="changeBackgroundImage('setumeigazou-2.png', this)"></button>
+
+<button class='select-button'
+data-text="締め切りや予定の日が近づいてきたとき、ブッキングがあったときは、お知らせします。「∨ タスクを表示」を押して、タスクの確認、管理を行なってください。"
+onclick="changeBackgroundImage('setumeigazou-3.png', this)"></button>
+</div>
+
+<script>
+
+let lastSelectedButton = document.querySelector('.select-button.selected');  // 直前に選択されたボタンを保持
+
+function changeBackgroundImage(imageUrl, button) {
+    document.getElementById('image-container').style.backgroundImage = `url('/assets/${imageUrl}')`;
+
+    // テキストの変更
+    const newText = button.getAttribute('data-text');
+    document.getElementById('text-container').textContent = newText;
+
+    // 直前のボタンがあれば、色を元に戻す
+    if (lastSelectedButton) {
+        lastSelectedButton.classList.remove('selected');
+    }
+
+    // 現在のボタンを選択状態にする
+    button.classList.add('selected');
+    lastSelectedButton = button; // 現在のボタンを更新
+}
+</script>
+
+
+</body>

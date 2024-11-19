@@ -1,0 +1,2 @@
+class RegisterTag < ApplicationRecord
+end
