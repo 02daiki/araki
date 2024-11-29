@@ -25,14 +25,12 @@ My Schedule
 <div class="flex-container">
     <% filtered_blogs = @blogs.select { |blog| blog.category == "task" || blog.deadline.present?} %>
         <% if filtered_blogs.any? { |blog| ( blog.start_time >= Date.today && blog.start_time <= 3.days.from_now ) || ( blog.deadline.present? && blog.deadline >= Date.today && blog.deadline <= 3.days.from_now ) } %>
-        <div class="box3days">〆切間近</div>
-
+            <div class="box3days">〆切間近</div>
         <% elsif filtered_blogs.any? { |blog| ( blog.start_time >= Date.today && blog.start_time <= 1.week.from_now ) || ( blog.deadline.present? && blog.deadline >= Date.today && blog.deadline <= 1.week.from_now ) } %>
-        <div class="box1week">〆切近い</div>
-
+            <div class="box1week">〆切近い</div>
         <% else %>
-        <div class="boxnotask">タスクなし</div>
-    <% end %>
+            <div class="boxnotask">タスクなし</div>
+        <% end %>
     <button id="toggle-button" class="toggle-button"> ∧</button>
 </div>
 
@@ -43,7 +41,7 @@ My Schedule
 
     <tbody>
     <% filtered_blogs.each do |blog| %>
-    <div class="blog-post" style="background-image: url('<%= asset_path('post-background.png') %>');" >
+    <div class="blog-post <%= 'show-category' if blog.category == 'show' %>" style="background-image: url('<%= asset_path('post-background.png') %>');" >
         <div>
             <div class='blog-title'><%= blog.title %></div>
         </div>
@@ -61,7 +59,7 @@ My Schedule
         <div>
             <div style="display: flex; align-items: center;">
             <% if blog.category == "show" %>
-            <%= link_to '閲覧', blog_path(blog.id) %>
+            <%= link_to 'あああ', blog_path(blog.id) %>
             <% else %>
             <%= button_to '管理する', edit_blog_path(blog.id), method: :get, class: "inline-button" %>
             <% end %>
@@ -86,6 +84,17 @@ My Schedule
 
 </table>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // "show-category"クラスを持つすべての要素を取得
+    const showPosts = document.querySelectorAll('.show-category');
+    
+    // 各要素を削除
+    showPosts.forEach(function(post) {
+        post.remove();
+    });
+});
+</script>
 
 <br>
 
