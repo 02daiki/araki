@@ -58,7 +58,7 @@ group :test do
 end
 
 # simple_calender
-gem 'simple_calendar', '~> 2.0'
+gem 'simple_calendar', '~> 3.0'
 
 gem 'sassc-rails'
 
